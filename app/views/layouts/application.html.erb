@@ -9,13 +9,13 @@
     <%= stylesheet_link_tag "application" %>
   </head>
 
-  <body>
+  <body> <!-- will show up in every page -->
     <p>
       <a href="/users/new">Sign Up</a>
     </p>
 
     <p>
-      <%= flash["notice"] %>
+      <%= flash["notice"] %> <!-- system wide hash like "params" -->
     </p>
 
     <%= yield %>
