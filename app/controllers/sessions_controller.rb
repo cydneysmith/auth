@@ -10,8 +10,9 @@ class SessionsController < ApplicationController
         if @user 
             # step 1a: if yes, check the password (go to step 2)
             # step 2: check the password to see if it matches the user's password
-            if params["password"] == @user["password"]
+            if BCrypt::Password.new(@user["password"]) == params["password"]
                 # step 2a: if yes, go to the companies page
+                session["user_id"] = @user["id"]
                 flash["notice"] = "You're in!"
                 redirect_to "/companies"
             else
@@ -24,5 +25,11 @@ class SessionsController < ApplicationController
             flash["notice"] = "Incorrect credentials"
             redirect_to "/sessions/new"
         end
+    end
+
+    def destroy
+        flash["See ya later!"]
+        session["user_id"] = nil
+        redirect_to "/sessions/new"
     end
 end

@@ -11,7 +11,13 @@
 
   <body> <!-- will show up in every page -->
     <p>
+    <% if @current_user%>
+      Hi, <%= @current_user["first_name"]%>
+      <a href="logout">Logout</a>
+      <% else %>
+      <a href="/login">Log In</a>
       <a href="/users/new">Sign Up</a>
+      <% end %>
     </p>
 
     <p>
